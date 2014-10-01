@@ -21,6 +21,7 @@
                     $('#table_products tr.total').each(function() { //filas con clase 'dato', especifica una clase, asi no tomas el nombre de las columnas
                         suma += parseFloat($(this).find('td').eq(3).text()) //numero de la celda 3
                     });
+                    console.log(suma);
                     $('#total_products').html("$ " + suma);
                 }
 
@@ -35,41 +36,69 @@
 <?php
 $submit = array(
     'value' => 'Confirmar Venta',
+    'class' => 'btn btn-success pull-right'
 );
 $cantidad = array(
     'name' => 'cantidad',
     'placeholder' => 'Cantidad',
     'id' => 'cantidad',
     'value' => 1,
-    'style' => 'width:50px;'
+    'style' => 'width:50px;',
+    'class' => 'form-control'
 );
 ?>
-<h3>Nueva Venta</h3>
-<table border="1">
-    <tr>
-        <td>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <h3>Datos de usuario</h3>
             <?php foreach ($user as $u): ?>
-                <p><?= $u["nombre"] . " " . $u["apellido_paterno"] . " " . $u["apellido_materno"] ?></p>
-                <p><?= $u["telefono"] ?></p>
-                <p><?= $u["celular"] ?></p>
-                <p><?= $u["email"] ?></p>
-                <?php $user_id=$u["id_usuario"] ?>
+                <p><strong>Nombre</strong> <?= $u["nombre"] . " " . $u["apellido_paterno"] . " " . $u["apellido_materno"] ?></p>
+                <p><strong>Telefono</strong> <?= $u["telefono"] ?></p>
+                <p><strong>Celular</strong> <?= $u["celular"] ?></p>
+                <p><strong>Email</strong> <?= $u["email"] ?></p>
+                <?php $user_id = $u["id_usuario"] ?>
             <?php endforeach; ?>
-        </td>
-        <td valign="top">
-            <?php
-            foreach ($productos as $p) {
-                $productos_select[$p['id_producto']] = $p['nombre'] . "  $" . $p['precio'];
-            }
-            echo form_dropdown('productos', $productos_select, "", 'id="product_select"') . form_input($cantidad);
-            echo form_hidden('token', $token);
-            ?>
-            <a id="add_product"><img style="height: 30px; width: 30px;" alt="" src="<?= base_url() ?>/images/add.gif"/></a>
-        </td>
-        <td valign="top">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <h3>Productos</h3>
+            <form class="form-horizontal">
+                <?php
+                foreach ($productos as $p) {
+                    $productos_select[$p['id_producto']] = $p['nombre'] . "  $" . $p['precio'];
+                }
+                ?>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Producto</label>
+                    <div class="col-sm-10">
+                        <?= form_dropdown('productos', $productos_select, "", 'id="product_select" class="form-control"') ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Cantidad</label>
+                    <div class="col-sm-10">
+                        <?= form_input($cantidad) ?>
+                    </div>
+                </div>
+                <?php
+                echo form_hidden('token', $token);
+                ?>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <a id="add_product" class="btn btn-info pull-right"> Añadir</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <h3>Venta</h3>
             <?= form_open(base_url() . 'index.php/verificacion/nueva_venta') ?>
-            <?= form_hidden("id_usuario",$user_id) ?>
-            <table border="1" id="table_products">
+            <?= form_hidden("id_usuario", $user_id) ?>
+            <table id="table_products" ng-table="tableParams" class="table table-condensed table-hover">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -89,7 +118,6 @@ $cantidad = array(
             </table>
             <?= form_submit($submit) ?>
             <?= form_close() ?>
-        </td>
-    </tr>
-</table>
-
+        </div>
+    </div>
+</div>

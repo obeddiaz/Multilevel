@@ -1,4 +1,4 @@
-<table border="1">
+<table id="tableEdo" ng-table="tableParams" class="table table-condensed table-hover">
     <thead>
         <tr>
             <th>Usuario</th>

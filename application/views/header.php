@@ -14,6 +14,7 @@
         <script type="text/javascript" src="<?= base_url() ?>js/funciones.js"></script>
         <link href="<?= base_url() ?>css/jquery.alerts.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>css/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url() ?>css/style.css" rel="stylesheet" type="text/css" />
         <script src="<?= base_url() ?>css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>

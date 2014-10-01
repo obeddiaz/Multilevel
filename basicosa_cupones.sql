@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.2
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 01-10-2014 a las 01:39:34
--- Versión del servidor: 5.6.18-enterprise-commercial-advanced
--- Versión de PHP: 5.5.12
+-- Host: 127.0.0.1
+-- Generation Time: Oct 01, 2014 at 09:55 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,44 +17,50 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `basicosa_cupones`
+-- Database: `basicosa_cupones`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_venta`
+-- Table structure for table `detalle_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
-`id_detalle_venta` int(11) NOT NULL,
+  `id_detalle_venta` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_venta` int(11) NOT NULL,
-  `precio` double NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `precio` double NOT NULL,
+  PRIMARY KEY (`id_detalle_venta`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
--- Volcado de datos para la tabla `detalle_venta`
+-- Dumping data for table `detalle_venta`
 --
 
 INSERT INTO `detalle_venta` (`id_detalle_venta`, `cantidad`, `id_producto`, `id_venta`, `precio`) VALUES
-(1, 1, 1, 2, 325),
-(2, 2, 1, 3, 325);
+(17, 1, 1, 13, 439),
+(18, 1, 3, 14, 487),
+(19, 1, 1, 15, 439),
+(20, 1, 1, 16, 439),
+(21, 4, 1, 17, 439),
+(22, 4, 3, 17, 487);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estados`
+-- Table structure for table `estados`
 --
 
 CREATE TABLE IF NOT EXISTS `estados` (
-`id_estado` int(11) NOT NULL,
-  `nombre_estado` varchar(50) NOT NULL
+  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_estado` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
--- Volcado de datos para la tabla `estados`
+-- Dumping data for table `estados`
 --
 
 INSERT INTO `estados` (`id_estado`, `nombre_estado`) VALUES
@@ -94,16 +100,17 @@ INSERT INTO `estados` (`id_estado`, `nombre_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-`id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Volcado de datos para la tabla `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `nombre`) VALUES
@@ -117,28 +124,30 @@ INSERT INTO `menu` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `productos`
+-- Table structure for table `productos`
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
-`id_producto` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `precio` double DEFAULT NULL,
   `ruta_imagen` varchar(150) NOT NULL,
-  `descripcion` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `descripcion` text NOT NULL,
+  PRIMARY KEY (`id_producto`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Volcado de datos para la tabla `productos`
+-- Dumping data for table `productos`
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `ruta_imagen`, `descripcion`) VALUES
-(1, 'Nuevo Productoi', 325, 'Lighthouse.jpg', 'test');
+(1, 'Flores', 439, 'Tulips.jpg', 'test 3 bla bla bla '),
+(3, 'Pinguinos', 487, 'Koala.jpg', 'Este es un koalacagado');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `total_venta`
+-- Table structure for table `total_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `total_venta` (
@@ -149,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `total_venta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -166,24 +175,26 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_tipo_usuario` int(11) NOT NULL,
   `pago_inicial` double NOT NULL,
   `fecha_nacimiento` date NOT NULL,
-`id_usuario` int(11) NOT NULL,
-  `foto` varchar(100) NOT NULL DEFAULT 'usuario.jpg'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(100) NOT NULL DEFAULT 'usuario.jpg',
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`usuario`, `password`, `nombre`, `apellido_paterno`, `apellido_materno`, `genero`, `estados_id_estado`, `email`, `telefono`, `celular`, `id_tipo_usuario`, `pago_inicial`, `fecha_nacimiento`, `id_usuario`, `foto`) VALUES
 ('obed', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'obed', 'diaz', 'rodriguez', 1, 1, 'obed.9@hotmail.com', '634564531', '', 3, 1, '1992-08-31', 1, 'usuario.jpg'),
-('david', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'obed', 'diaz', 'rodriguez', 1, 1, 'obed.diaz@hotmail.com', '44856745641', '41234134', 2, 1, '1992-08-31', 2, 'usuario.jpg'),
+('david', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'David', 'Díaz', 'rodriguez', 1, 1, 'obed.diaz@hotmail.com', '44856745641', '41234134', 2, 1, '1992-08-31', 2, 'usuario.jpg'),
 ('obed.diaz', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'Obed', 'Díaz ', 'Rodríguez', 1, 1, 'obed.9@hotmail.com', '151443', '2345234524', 2, 0, '1992-08-31', 3, 'usuario.jpg'),
-('dias.obed', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'Obed', 'Díaz Rodríguez', 'gsdfgsdfg', 1, 1, 'obed.9@hotmail.com', '4325452', NULL, 2, 1, '1992-08-31', 4, 'usuario.jpg');
+('dias.obed', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'Obed', 'Díaz Rodríguez', 'gsdfgsdfg', 1, 1, 'obed.9@hotmail.com', '4325452', NULL, 2, 1, '1992-08-31', 4, 'usuario.jpg'),
+('omar', '45e148e9751f84e7b2323f8a0c4977bbe6a7b4c8', 'omar', 'nieves', 'carrizales', 1, 1, 'obed.0@gmail.com', '449 -913649716', '130947819057', 2, 1, '1992-08-31', 5, 'usuario.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario_afiliado`
+-- Table structure for table `usuario_afiliado`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario_afiliado` (
@@ -192,108 +203,38 @@ CREATE TABLE IF NOT EXISTS `usuario_afiliado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `usuario_afiliado`
+-- Dumping data for table `usuario_afiliado`
 --
 
 INSERT INTO `usuario_afiliado` (`id_usuario`, `id_usuario_inv`) VALUES
 (1, 2),
-(2, 4);
+(2, 4),
+(2, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas`
+-- Table structure for table `ventas`
 --
 
 CREATE TABLE IF NOT EXISTS `ventas` (
-`id_venta` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `fecha_venta` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `fecha_venta` datetime NOT NULL,
+  PRIMARY KEY (`id_venta`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
--- Volcado de datos para la tabla `ventas`
+-- Dumping data for table `ventas`
 --
 
 INSERT INTO `ventas` (`id_venta`, `id_usuario`, `fecha_venta`) VALUES
-(1, 2, '2014-09-30 00:00:00'),
-(2, 2, '2014-09-30 00:00:00'),
-(3, 2, '2014-09-30 00:00:00');
+(13, 2, '2014-10-01 00:00:00'),
+(14, 4, '2014-10-01 00:00:00'),
+(15, 4, '2014-10-01 00:00:00'),
+(16, 2, '2014-10-01 00:00:00'),
+(17, 5, '2014-10-01 00:00:00');
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
- ADD PRIMARY KEY (`id_detalle_venta`);
-
---
--- Indices de la tabla `estados`
---
-ALTER TABLE `estados`
- ADD PRIMARY KEY (`id_estado`);
-
---
--- Indices de la tabla `menu`
---
-ALTER TABLE `menu`
- ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
- ADD PRIMARY KEY (`id_producto`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
- ADD PRIMARY KEY (`id_usuario`);
-
---
--- Indices de la tabla `ventas`
---
-ALTER TABLE `ventas`
- ADD PRIMARY KEY (`id_venta`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
-MODIFY `id_detalle_venta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `estados`
---
-ALTER TABLE `estados`
-MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
---
--- AUTO_INCREMENT de la tabla `menu`
---
-ALTER TABLE `menu`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `ventas`
---
-ALTER TABLE `ventas`
-MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

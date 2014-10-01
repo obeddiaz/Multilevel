@@ -33,19 +33,23 @@ class Ventas_model extends CI_Model {
         return TRUE;
     }
 
-    function ventas_mes($year,$month) {
-        $q = $query = $this->db->query("SELECT v.id_venta, u.usuario, CONCAT( u.nombre,  ' ', u.apellido_paterno,  ' ', u.apellido_materno ) AS Nombre, v.fecha_venta, tv.total
+    function ventas_mes($year, $month) {
+        $q = $query = $this->db->query("SELECT 
+            v.id_venta, 
+            u.usuario, 
+            CONCAT( u.nombre,  ' ', u.apellido_paterno,  ' ', u.apellido_materno ) AS Nombre,
+            v.fecha_venta,
+            (select SUM(dv.cantidad*dv.precio) from detalle_venta dv where dv.id_venta=v.id_venta) as total
             FROM ventas v
-            INNER JOIN usuarios u ON v.id_usuario = u.id_usuario
-            INNER JOIN total_venta tv ON tv.id_venta = v.id_venta
-            WHERE YEAR( v.fecha_venta ) =$year
-            AND MONTH( v.fecha_venta ) =$month");
+            INNER JOIN usuarios u ON v.id_usuario = u.id_usuario");
         return $q->result_array();
     }
+
     function get_months() {
         $q = $this->db->get('meses');
         return $q->result_array();
     }
+
     function get_years() {
         $this->db->select('YEAR( fecha_venta ) AS  "year"');
         $this->db->group_by("YEAR(fecha_venta)");

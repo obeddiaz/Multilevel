@@ -171,7 +171,16 @@ function editar_producto(id_produto) {
             $('#msgInvitado').html('Verificando...');
         },
         success: function(data) {
-            jAlert(data, 'Modificar Datos de Producto');
+            //var $this = $(this)
+//            console.log(data);
+//            var $remote =  data;
+//            var $modal = $('<div class="modal" id="ajaxModal"><div class="modal-body"></div></div>');
+//            $('body').append($modal);
+//            $modal.modal({backdrop: 'static', keyboard: false});
+//            $modal.load($remote);
+            $('#myModal').html(data);
+            $('#myModal').modal();
+            //jAlert(data, 'Modificar Datos de Producto');
         }
 
     });
@@ -209,12 +218,12 @@ function venta(usuario) {
     return false;
 }
 
-function confirmar_pago(usuario){ 
-    if (confirm('¿Estas seguro que deseas confirmar el pago de este usuario?')){ 
-        window.location = "http://" + GetBaseUrl() + "/index.php/verificacion/comprobar_pago/"+usuario;
-    } 
-} 
+function confirmar_pago(usuario) {
+    if (confirm('¿Estas seguro que deseas confirmar el pago de este usuario?')) {
+        window.location = "http://" + GetBaseUrl() + "/index.php/verificacion/comprobar_pago/" + usuario;
+    }
+}
 
 function ventas(usuario) {
-    window.location = "http://" + GetBaseUrl() + "/index.php/show_usuarios/venta/"+usuario;
+    window.location = "http://" + GetBaseUrl() + "/index.php/show_usuarios/venta/" + usuario;
 }

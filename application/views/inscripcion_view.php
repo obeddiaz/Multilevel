@@ -3,54 +3,62 @@ $nombre = array(
     'name' => 'nombre',
     'id' => 'nombre',
     'placeholder' => 'Nombre',
-        //'readonly'=>'readonly',
-        //'value'=>'obed'
+    'class' => 'form-control'
 );
 $apellido_pat = array(
     'name' => 'apellido_paterno',
     'id' => 'apellido',
-    'placeholder' => 'Apellido Paterno'
+    'placeholder' => 'Apellido Paterno',
+    'class' => 'form-control'
 );
 $apellido_mat = array(
     'name' => 'apellido_materno',
     'id' => 'apellido',
-    'placeholder' => 'Apellido Materno'
+    'placeholder' => 'Apellido Materno',
+    'class' => 'form-control'
 );
 $username = array(
     'name' => 'usuario',
     'id' => 'username',
     'placeholder' => 'Nombre de usuario',
-    'onchange'=>'showUser(this.value)'
+    'onchange' => 'showUser(this.value)',
+    'class' => 'form-control'
 );
 $password = array(
     'name' => 'password',
     'id' => 'password',
-    'placeholder' => 'Password'
+    'placeholder' => 'Password',
+    'class' => 'form-control'
 );
 $password_conf = array(
     'name' => 'password_conf',
     'id' => 'password_conf',
-    'placeholder' => 'Confirmar Password'
+    'placeholder' => 'Confirmar Password',
+    'class' => 'form-control'
 );
 $email = array(
     'name' => 'email',
     'id' => 'email',
-    'placeholder' => 'Email'
+    'placeholder' => 'Email',
+    'class' => 'form-control'
 );
 $telefono = array(
     'name' => 'telefono',
     'id' => 'telefono',
-    'placeholder' => 'XXX-XXX-XXXX'
+    'placeholder' => 'XXX-XXX-XXXX',
+    'class' => 'form-control'
 );
 $celular = array(
     'name' => 'celular',
     'id' => 'telefono',
-    'placeholder' => 'XXX-XXX-XXXX'
+    'placeholder' => 'XXX-XXX-XXXX',
+    'class' => 'form-control'
 );
 $invitado = array(
     'name' => 'invitado',
     'id' => 'invitado',
-    'placeholder' => 'Ejemplo: 15'
+    'placeholder' => 'Ejemplo: 15',
+    'class' => 'form-control'
 );
 $id_verificar = array(
     'name' => 'verificar_usuario',
@@ -90,54 +98,109 @@ $submit = array(
     'value' => 'Inscribirme',
     'name' => 'registro',
     'id' => 'registro',
+    'class' => 'btn btn-primary'
 );
 ?>
-<center>
-<?= form_open(base_url() . 'index.php/inscripcion/alta_inscripcion') ?>
-<?= form_fieldset('Datos de Usuario','id="datos_usuario"')?>
-<?= form_label('Usuario') ?>
-<?= form_input($username) ?>
-<span id="msgusuario"></span>
-<?= form_error('usuario', '<div id="error">', '</div>'); ?>
-<?= form_label('Contraseña') ?>
-<?= form_password($password) ?>
-<span id="msgpassword"></span>
-<?= form_error('password', '<div id="error">', '</div>'); ?>
-<?= form_label('Confirmar Contraseña') ?>
-<?= form_password($password_conf) ?>
-<span id="msgpassword_conf"></span>
-<?= form_fieldset_close()?>
-<?= form_fieldset('Datos Personales','id="datos_usuario"')?>
-<?= form_label('Nombre') ?>
-<?= form_input($nombre) ?>
-<?= form_label('Apellido Paterno') ?>
-<?= form_input($apellido_pat) ?>
-<?= form_label('Apellido Materno') ?>
-<?= form_input($apellido_mat) ?>
-<?= form_label('Genero') ?>
-<?= form_dropdown('genero', $genero, '', 'id="genero"') ?>
-<?= form_label('Estado') ?>
-<?= form_dropdown('estados_id_estado', $estados, '', 'id="estado"') ?>
-<?= form_label('Email') ?>
-<?= form_input($email) ?>
-<span id="msgEmail"></span>
-<?= form_label('Telefono') ?>
-<?= form_input($telefono) ?>
-<?= form_label('Fecha de Nacimiento') ?>
-<?= form_dropdown('month', $meses, '', 'id="month"') ?>
-<?= form_dropdown('day', $day, '', 'id="day"') ?>
-<?= form_dropdown('year', $years, '', 'id="year"') ?>
-<?= form_fieldset_close()?>
-<?= form_label('Persona que te Invito') ?>
-<?= form_input($invitado) ?><?= form_button($id_verificar, "Verificar") ?><br>
-<?= form_hidden('token', $token) ?>
-<?= form_submit($submit) ?>
-<?= form_close() ?>
+<form action="<?= base_url() . 'index.php/inscripcion/alta_inscripcion' ?>" method="post" accept-charset="utf-8" class="form-horizontal"> 
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
+        <div class="col-sm-10">
+            <?= form_input($username) ?>
+            <span id="msgusuario"></span>
+            <?= form_error('usuario', '<div id="error">', '</div>'); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Contraseña</label>
+        <div class="col-sm-10">
+            <?= form_password($password) ?>
+            <span id="msgpassword"></span>
+            <?= form_error('password', '<div id="error">', '</div>'); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Confirmar Contraseña</label>
+        <div class="col-sm-10">
+            <?= form_password($password_conf) ?>
+            <span id="msgpassword_conf"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-10">
+            <?= form_input($nombre) ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Apellido Paterno</label>
+        <div class="col-sm-10">
+            <?= form_input($apellido_pat) ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Apellido Materno</label>
+        <div class="col-sm-10">
+            <?= form_input($apellido_mat) ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+        <div class="col-sm-10">
+            <?= form_input($telefono) ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
+        <div class="col-sm-10">
+            <?= form_input($celular) ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <?= form_input($email) ?>
+            <span id="msgEmail"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Estado</label>
+        <div class="col-sm-10">
+            <?= form_dropdown('estados_id_estado', $estados, '', 'id="estado"') ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Fecha de nacimiento</label>
+        <div class="col-sm-10">
+            <?= form_dropdown('month', $meses, '', 'id="month"') ?>
+            <?= form_dropdown('day', $day, '', 'id="day"') ?>
+            <?= form_dropdown('year', $years, '', 'id="year"') ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Genero</label>
+        <div class="col-sm-10">
+            <?= form_dropdown('genero', $genero, '', 'id="genero"') ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Persona que Invito</label>
+        <div class="col-sm-10">
+            <?= form_input($invitado) ?><?= form_button($id_verificar, "Verificar") ?><br>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <?= form_hidden('token', $token) ?>
+            <?= form_submit($submit) ?>
+        </div>
+    </div>
+</form>
 <?php
 $registrado = $this->session->flashdata('registrado');
 if ($registrado) {
     ?>
     <div class="grid_3" id="registro_correcto"><?= $registrado ?></div>
-    <?php }
+<?php }
 ?>
-</center>

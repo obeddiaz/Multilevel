@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -56,37 +55,112 @@ class Verificacion extends CI_Controller {
             'name' => 'nombre',
             'placeholder' => 'Nombre de la imagen',
             'value' => $producto->nombre,
+            'class' => 'form-control'
         );
         $descripcion = array(
             'name' => 'descripcion',
             'placeholder' => 'Descripcion',
             'value' => $producto->descripcion,
+            'class' => 'form-control',
+            'style' => 'resize: none;'
         );
         $imagen = array(
-            'name' => 'userfile',
+            'name' => 'userfile'
         );
         $precio = array(
             'name' => 'precio',
             'value' => $producto->precio,
+            'class' => 'form-control'
         );
         $submit = array(
             'value' => 'Modificar Producto',
+            'class' => 'btn btn-primary'
         );
         $id = $producto->id_producto;
         $token = $this->token();
         $imagen_pasada = $producto->ruta_imagen;
-        echo "<table border='0'><tr><td>" . '<img alt="" src="' . base_url() . "productos_imagenes/thumbs/" . $producto->ruta_imagen . '"/></td><td>';
-        echo form_open_multipart('productos/modificar');
-        echo "<label>Nombre del Producto:</label>" . form_input($nombre);
-        echo "<label>Descripcion/Contenido:</label>" . form_textarea($descripcion);
-        echo "<label>Precio:</label>" . form_input($precio);
-        echo form_upload($imagen);
-        echo form_hidden('id_producto', $id);
-        echo form_hidden('imagen_pasada', $imagen_pasada);
-        echo form_hidden('token', $token);
-        echo form_submit($submit);
-        echo form_close();
-        echo "</td></tr></table>";
+        ?>
+        <?= form_open_multipart('productos/modificar', 'class="form-horizontal"') ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Producto: <?= $nombre['value'] ?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <?= form_input($nombre) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Precio</label>
+                                    <div class="col-sm-10">
+                                        <?= form_input($precio) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Precio</label>
+                                    <div class="col-sm-10">
+                                        <?= form_textarea($descripcion) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="thumbnail">
+                                        <img alt="" src="<?= base_url() . "productos_imagenes/thumbs/" . $producto->ruta_imagen ?>"/>
+                                        <div class="caption">
+                                            <span class="btn btn-success btn-file">
+                                                Imagen <?= form_upload($imagen) ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <?= form_hidden('id_producto', $id) ?>
+                    <?= form_hidden('imagen_pasada', $imagen_pasada) ?>
+                    <?= form_hidden('token', $token) ?>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    <?= form_submit($submit) ?>
+                </div>
+            </div>
+        </div>
+        <?= form_close() ?>
+        <?php
+//        echo "<table border='0'><tr><td>" . '<img alt="" src="' . base_url() . "productos_imagenes/thumbs/" . $producto->ruta_imagen . '"/></td><td>';
+//        echo form_open_multipart('productos/modificar');
+//        echo "<label>Nombre del Producto:</label>" . form_input($nombre);
+//        echo "<label>Descripcion/Contenido:</label>" . form_textarea($descripcion);
+//        echo "<label>Precio:</label>" . form_input($precio);
+//        echo form_upload($imagen);
+//        echo form_hidden('id_producto', $id);
+//        echo form_hidden('imagen_pasada', $imagen_pasada);
+//        echo form_hidden('token', $token);
+//        echo form_submit($submit);
+//        echo form_close();
+//        echo "</td></tr></table>";
     }
 
     public function usuario() {
@@ -146,14 +220,14 @@ class Verificacion extends CI_Controller {
         $cantidad = $this->input->post('cantidad');
         $p = $this->imagen_producto_model->obtener_producto($id_producto);
         $total = ($p->precio) * $cantidad;
-        echo "<tr id='product_added' class='total'><td>" . $p->nombre . '</td><td>$ ' . $p->precio . '</td><td>' . $cantidad . '</td><td>' . $total . '</td><td style="display:none;">'. $id_producto . '</td><td style="display:none;">' . form_hidden("id_producto[]", $id_producto) . form_hidden("precio[]", $p->precio) . form_hidden("cantidad[]", $cantidad) . '</td></tr>';
+        echo "<tr id='product_added' class='total'><td>" . $p->nombre . '</td><td>$ ' . $p->precio . '</td><td>' . $cantidad . '</td><td>' . $total . '</td><td style="display:none;">' . $id_producto . '</td><td style="display:none;">' . form_hidden("id_producto[]", $id_producto) . form_hidden("precio[]", $p->precio) . form_hidden("cantidad[]", $cantidad) . '</td></tr>';
     }
-   
+
     function nueva_venta() {
         $this->load->model('ventas_model');
         $this->ventas_model->nueva_venta($this->input->post());
         var_dump($this->input->post());
         //echo date('Y-m-d');
     }
-  
+
 }

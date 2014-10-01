@@ -13,14 +13,14 @@ class Afiliados extends CI_Controller {
         $this->load->database('default');
         $data['menu'] = $this->menu_model->conseguir_menu();
         $data['titulo'] = 'Login BAGS';
-        $data['titulo_pagina'] = 'Afiliados de '.$this->session->userdata('username').' Id: '.$this->session->userdata('id_usuario');
+        $data['titulo_pagina'] = 'Afiliados de ' . $this->session->userdata('username') . ' Id: ' . $this->session->userdata('id_usuario');
         $this->load->view('header', $data);
     }
 
     public function index() {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $this->load->model('afiliados_model');
-            $data['niveles'] = 3;
+            $data['niveles'] = 50;
             for ($a = 1; $a <= $data['niveles']; $a++) {
                 $data['afiliados' . $a] = $this->afiliados_model->mostrar_afiliados_nivel_1($this->session->userdata('id_usuario'), $a);
             }
