@@ -1,4 +1,4 @@
-<table border="1">
+<table id="tableEdo" ng-table="tableParams" class="table table-condensed table-hover">
     <thead>
         <tr>
             <th>Foto</th>
@@ -27,18 +27,17 @@
                 ?>
                 <?php
                 if ($u["pago_inicial"] == 0) {
-                ?>
-                <td><button disabled="disabled" onclick="venta(<?= $u['id_usuario']; ?>)">Realizar Venta</button></td>
-                    <?php 
-                } else {  ?>
-                    <td><button onclick="ventas(<?= $u['id_usuario']; ?>)">Realizar Venta</button></td>
-                <?php 
+                    ?>
+                    <td><button class="btn btn-success" disabled="disabled" onclick="venta(<?= $u['id_usuario']; ?>)">Realizar Venta</button></td>
+                <?php } else {
+                    ?>
+                    <td><button class="btn btn-success" onclick="ventas(<?= $u['id_usuario']; ?>)">Realizar Venta</button></td>
+                    <?php
                 }
                 ?>
-                
-                <?php
-                if ($u["pago_inicial"] == 0) { ?>
-                    <td><button onclick="confirmar_pago(<?= $u['id_usuario']; ?>)">Confirmar Pago de inscripcion</button></td>
+
+                <?php if ($u["pago_inicial"] == 0) { ?>
+                    <td><button class="btn btn-success" onclick="confirmar_pago(<?= $u['id_usuario']; ?>)">Confirmar Pago de inscripcion</button></td>
                     <?php
                 }
                 ?>

@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'basicosa_ags';
-$db['default']['password'] = 'admin_basicos';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'basicosa_cupones'; 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

@@ -1,31 +1,47 @@
 <?php
-$username = array('name' => 'username', 'placeholder' => 'Nombre de usuario');
-$password = array('name' => 'password', 'placeholder' => 'Introduce tu password');
-$submit = array('name' => 'submit', 'value' => 'Iniciar sesión', 'title' => 'Iniciar sesión');
+$username = array('name' => 'username', 'placeholder' => 'Nombre de usuario', 'class' => 'form-control input-lg');
+$password = array('name' => 'password', 'placeholder' => 'Introduce tu password', 'class' => 'form-control input-lg');
+$submit = array('name' => 'submit', 'value' => 'Iniciar sesión', 'title' => 'Iniciar sesión', 'class' => 'btn btn-primary btn-lg btn-block');
 ?>
 <?= form_open(base_url() . 'index.php/login/new_user') ?>
-<label for="username">Nombre de usuario:</label>
-<center><?= form_input($username) ?><p><?= form_error('username') ?></p></center>
-<label for="password">Password:</label>
-<center><?= form_password($password) ?><p><?= form_error('password') ?></p></center>
-<?= form_hidden('token', $token) ?>
-<?= form_submit($submit) ?>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" style="border-bottom: 0px;">
+        </div>
+        <div class="modal-body">
+            <form class="form col-md-12 center-block">
+                <div class="form-group">
+                    <?= form_input($username) ?>
+                </div>
+                <div class="form-group">
+                    <?= form_password($password) ?>
+                </div>
+                <div class="form-group">
+                    <?= form_hidden('token', $token) ?>
+                    <?php
+                    if ($this->session->flashdata('usuario_incorrecto')) {
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oh!</strong> Usuario o contraseña incorrectos.
+                        </div>
+                        <?php
+                    }
+                    if ($this->session->flashdata('pago_inicial')) {
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oh!</strong> <?=$this->session->flashdata('pago_inicial');?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                    <?= form_submit($submit) ?>
+                    <span class="pull-right"><a href="/index.php/inscripcion"><div>Inscripcion</div></a></span>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer" style="border-top: 0px;">
+        </div>
+    </div>
+</div>
 <?= form_close() ?>
-<?php
-if ($this->session->flashdata('usuario_incorrecto')) {
-    ?>
-    <p><?= $this->session->flashdata('usuario_incorrecto') ?></p>
-    <?php
-}
-if ($this->session->flashdata('pago_inicial')) {
-    ?>
-    <?php
-    echo "<script>";
-    echo "$(document).ready(function() {";
-    echo 'jAlert("'.$this->session->flashdata('pago_inicial').'","Lo sentimos :(");';
-    echo "});";
-    echo "</script>";
-    ?>
-    <?php
-}
-?>
