@@ -67,7 +67,7 @@ class Login extends CI_Controller {
                 $password = sha1($this->input->post('password'));
                 $check_user = $this->login_model->login_user($username, $password);
                 if ($check_user == TRUE) {
-                    if ($check_user->pago_inicial == 1) {
+                    if ($check_user->pago_inicial == 1||$check_user->pago_inicial == 0) {
                         $data = array(
                             'is_logued_in' => TRUE,
                             'id_usuario' => $check_user->id_usuario,

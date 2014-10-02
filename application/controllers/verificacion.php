@@ -42,10 +42,36 @@ class Verificacion extends CI_Controller {
         $id_usuario = $this->input->post('invitado');
         $comprobar_usuario = $this->inscripcion_model->verifica_nombre_usuario($id_usuario);
         if ($comprobar_usuario) {
-            echo $comprobar_usuario;
+            $user = $comprobar_usuario;
+            $exist = true;
         } else {
-            echo "El id de este usuario no existe";
+            $user = "El id de este usuario no existe";
+            $exist = false;
         }
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Verificar Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <p class="lead"><?= $user ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 
     public function obtener_producto() {
@@ -202,11 +228,41 @@ class Verificacion extends CI_Controller {
     public function detalles_producto() {
         $id_producto = $this->input->post('producto');
         $p = $this->imagen_producto_model->obtener_producto($id_producto);
-        echo '<p style="font-size: 24px;">';
-        echo $p->nombre . ' $' . $p->precio . '';
-        echo '</p>
-        <img alt = "" src = "' . base_url() . 'productos_imagenes/thumbs/' . $p->ruta_imagen . '"/><br>';
-        echo $p->descripcion;
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Producto: <?= $p->nombre . ' $' . $p->precio ?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row-fluid">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="thumbnail">
+                                    <img alt = "" src = "<?= base_url() . 'productos_imagenes/thumbs/' . $p->ruta_imagen ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <?= $p->descripcion ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 
     public function comprobar_pago($user_id) {

@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'basicosa_cupones'; 
+$db['default']['username'] = 'autoempl_mlevel';
+$db['default']['password'] = '138029';
+$db['default']['database'] = 'autoempl_multinivel'; 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

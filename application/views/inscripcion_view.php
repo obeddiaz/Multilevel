@@ -64,6 +64,7 @@ $id_verificar = array(
     'name' => 'verificar_usuario',
     'id' => 'id_verificar',
     'value' => 'Verificar',
+    'class'=>'btn btn-primary'
 );
 $meses = array(
     'FALSE' => 'Mes',
@@ -186,8 +187,11 @@ $submit = array(
 
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Persona que Invito</label>
-        <div class="col-sm-10">
-            <?= form_input($invitado) ?><?= form_button($id_verificar, "Verificar") ?><br>
+        <div class="col-sm-7">
+            <?= form_input($invitado) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= form_button($id_verificar, "Verificar") ?>
         </div>
     </div>
     <div class="form-group">

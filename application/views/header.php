@@ -49,11 +49,13 @@
                                 echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
                                 echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
                                 echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
+                                echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
                             }
                             if ($this->session->userdata('perfil') == 2) {
                                 echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
                                 echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
                                 echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
+                                echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
                             }
                             if ($this->session->userdata('perfil') == 3) {
                                 echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
@@ -71,7 +73,9 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div>
         <div class="container">
             <div class="page-header">
-                <h1><?=$titulo_pagina?></h1>
+                <h1><?= $titulo_pagina ?></h1>
             </div>

@@ -58,13 +58,15 @@ $invitado = array(
     'name' => 'invitado',
     'id' => 'invitado',
     'placeholder' => 'Ejemplo: 15',
-    'class' => 'form-control'
+    'class' => 'form-control',
+    'readonly'=>'readonly',
+    'value'=>$id_usuario
 );
 $id_verificar = array(
     'name' => 'verificar_usuario',
     'id' => 'id_verificar',
     'value' => 'Verificar',
-    'class'=>'btn btn-success'
+    'class'=>'btn btn-primary'
 );
 $meses = array(
     'FALSE' => 'Mes',
@@ -96,13 +98,13 @@ $genero = array(
     '2' => 'Mujer',
 );
 $submit = array(
-    'value' => 'Registrar',
+    'value' => 'Inscribirme',
     'name' => 'registro',
     'id' => 'registro',
-    'class' => 'btn btn-success'
+    'class' => 'btn btn-primary'
 );
 ?>
-<form action="<?= base_url() . 'index.php/add_user/add_new_user' ?>" method="post" accept-charset="utf-8" class="form-horizontal"> 
+<form action="<?= base_url() . 'index.php/inscripcion/alta_inscripcion_directo' ?>" method="post" accept-charset="utf-8" class="form-horizontal"> 
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
         <div class="col-sm-10">
@@ -184,6 +186,7 @@ $submit = array(
             <?= form_dropdown('genero', $genero, '', 'id="genero"') ?>
         </div>
     </div>
+
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Persona que Invito</label>
         <div class="col-sm-7">
@@ -194,7 +197,6 @@ $submit = array(
             <?= form_button($id_verificar, "Verificar") ?>
         </div>
     </div>
-
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <?= form_hidden('token', $token) ?>

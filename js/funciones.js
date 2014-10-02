@@ -9,8 +9,8 @@ function confirmar(producto)
         return false;
     }
 }
-$(document).ready(function() {
-    $('#username').focusout(function() {
+$(document).ready(function () {
+    $('#username').focusout(function () {
         if ($("#username").val().length < 4)
         {
             $('#msgusuario').html("<span style='color:#f00'>El nick debe contener 5 caracteres minimo</span>");
@@ -25,10 +25,10 @@ $(document).ready(function() {
                 url: "http://" + GetBaseUrl() + "/index.php/verificacion/comprobar_usuario_ajax",
                 data: "username=" + $('#username').val(),
                 dataType: "html",
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#msgusuario').html('Verificando...');
                 },
-                success: function(data) {
+                success: function (data) {
                     $("#msgusuario").html(data);
                     n();
                 }
@@ -42,10 +42,10 @@ $(document).ready(function() {
 /*----------------------------------------------------------------------------------------------------------------------*/
 /*funcion ajax para comprobar si el usuario existe en la base de datos*/
 
-$(document).ready(function() {
+$(document).ready(function () {
     var emailreg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
     // aqui va a ir la validacion
-    $('#email').focusout(function() {
+    $('#email').focusout(function () {
         if ($("#email").val() == "" || !emailreg.test($("#email").val()))
         {
             $('#msgEmail').html("<span style='color:#f00'>Ingrese un email correcto</span>");
@@ -55,10 +55,10 @@ $(document).ready(function() {
                 url: "http://" + GetBaseUrl() + "/index.php/verificacion/comprobar_email_ajax",
                 data: "email=" + $('#email').val(),
                 dataType: "html",
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#msgEmail').html('Verificando...');
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#msgEmail').html(data);
                     n();
                     ;
@@ -68,8 +68,8 @@ $(document).ready(function() {
         }
     });
 });
-$(document).ready(function() {
-    $('#password').keyup(function() {
+$(document).ready(function () {
+    $('#password').keyup(function () {
         var emailreg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
         var RegExPattern = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
         if ($("#password").val().length < 6)
@@ -82,8 +82,8 @@ $(document).ready(function() {
 
     });
 });
-$(document).ready(function() {
-    $('#password_conf').keyup(function() {
+$(document).ready(function () {
+    $('#password_conf').keyup(function () {
         if ($("#password").val() != $("#password_conf").val())
         {
             $('#msgpassword_conf').html("<span style='color:red'>Las contraseñas no coinsiden</span>");
@@ -93,26 +93,27 @@ $(document).ready(function() {
         }
     });
 });
-$(document).ready(function() {
-    $('#id_verificar').click(function() {
+$(document).ready(function () {
+    $('#id_verificar').click(function () {
         $.ajax({
             type: "POST",
             url: "http://" + GetBaseUrl() + "/index.php/verificacion/comprobar_datos_usuario_ajax",
             data: "invitado=" + $('#invitado').val(),
             dataType: "html",
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#msgInvitado').html('Verificando...');
             },
-            success: function(data) {
-                jAlert(data, 'Datos de usuario');
+            success: function (data) {
+                $('#myModal').html(data);
+                $('#myModal').modal();
             }
 
         });
         return false;
     });
 });
-$(document).ready(function() {
-    $('#month').change(function() {
+$(document).ready(function () {
+    $('#month').change(function () {
         $("#day").empty();
         if ($('#month').val() == '01' || $('#month').val() == '03' || $('#month').val() == '05' || $('#month').val() == '07' || $('#month').val() == '08' || $('#month').val() == '10' || $('#month').val() == '12') {
             $("#day").append('<option value=\'FALSE\'>Dia</option>');
@@ -167,10 +168,10 @@ function editar_producto(id_produto) {
         url: "http://" + GetBaseUrl() + "/index.php/verificacion/obtener_producto",
         data: "producto=" + id_produto,
         dataType: "html",
-        beforeSend: function() {
+        beforeSend: function () {
             $('#msgInvitado').html('Verificando...');
         },
-        success: function(data) {
+        success: function (data) {
             //var $this = $(this)
 //            console.log(data);
 //            var $remote =  data;
@@ -192,10 +193,12 @@ function show_producto(id_produto) {
         url: "http://" + GetBaseUrl() + "/index.php/verificacion/detalles_producto",
         data: "producto=" + id_produto,
         dataType: "html",
-        beforeSend: function() {
+        beforeSend: function () {
         },
-        success: function(data) {
-            jAlert(data, 'Detalles');
+        success: function (data) {
+            //jAlert(data, 'Detalles');
+            $('#myModal').html(data);
+            $('#myModal').modal();
         }
 
     });
@@ -207,10 +210,10 @@ function venta(usuario) {
         url: "http://" + GetBaseUrl() + "/index.php/verificacion/usuario",
         data: "usuario=" + usuario,
         dataType: "html",
-        beforeSend: function() {
+        beforeSend: function () {
             $('#msgInvitado').html('Verificando...');
         },
-        success: function(data) {
+        success: function (data) {
             jAlert(data, 'Venta');
         }
 

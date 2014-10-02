@@ -20,11 +20,20 @@ class Afiliados extends CI_Controller {
     public function index() {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $this->load->model('afiliados_model');
-            $data['niveles'] = 50;
+            $data['niveles'] = 5;
             for ($a = 1; $a <= $data['niveles']; $a++) {
                 $data['afiliados' . $a] = $this->afiliados_model->mostrar_afiliados_nivel_1($this->session->userdata('id_usuario'), $a);
             }
             $this->load->view('afiliados_view', $data);
+            $this->load->view('footer');
+        }
+    }
+
+    public function invitados() {
+        if ($this->session->userdata('is_logued_in') == TRUE) {
+            $this->load->model('afiliados_model');
+            $data['invitados'] = $this->afiliados_model->get_invitados($this->session->userdata('id_usuario'));
+            $this->load->view('invitados_view', $data);
             $this->load->view('footer');
         }
     }
