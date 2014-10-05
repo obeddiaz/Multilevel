@@ -1,7 +1,9 @@
 <table id="tableEdo" ng-table="tableParams" class="table table-condensed table-hover">
     <thead>
         <tr>
-            <th>Foto</th>
+            <th>Ver niveles</th>
+            <th>Nuevo Afiliado</th>
+            <th>Imagen de Usuario</th>
             <th>Nombre y apellidos</th>
             <th>Telefono</th>
             <th>Celular</th>
@@ -13,6 +15,8 @@
     <tbody>
         <?php foreach ($usuarios as $u): ?>
             <tr>
+                <td><a class="btn btn-default" href="<?= base_url() ?>index.php/afiliados/show_user_levels/<?= $u['id_usuario'] ?>">Niveles</a></td>
+                <td><a class="btn btn-default" href="<?= base_url() ?>index.php/inscripcion/nuevo_afiliado_main/<?= $u['id_usuario'] ?>"><span class="glyphicon glyphicon-plus"></span>Nuevo Usuario</a></td>
                 <td><img alt="" src="<?= base_url() ?>/usuarios/thumbs/<?= $u["foto"] ?>"/></td>
                 <td><?= $u["nombre"] . " " . $u["apellido_paterno"] . " " . $u["apellido_materno"] ?></td>
                 <td><?= $u["telefono"] ?></td>
@@ -45,4 +49,4 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<a href="<?= base_url() ?>index.php/add_user"><img style="height: 50px; width: 50px;" alt="" src="<?= base_url() ?>/images/add.jpg"/></a>
+<!--<a href="<?= base_url() ?>index.php/add_user"><img style="height: 50px; width: 50px;" alt="" src="<?= base_url() ?>/images/add.jpg"/></a>-->

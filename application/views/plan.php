@@ -8,33 +8,51 @@
                 <br><b>¿Quieres tener tu propio negocio?</b><br>
                 <b>¿Salud y seguridad económica?</b><br>
                 <b>¿Tiempo libre?</b><br><br>
-                BASICOS-AGS ha creado una extraordinaria oportunidad para empresarios independientes como tú:<br>
-                Productos de extraordinaria calidad.<br>
-                Un sistema que te permitirá obtener ingresos ilimitados, ofrecemos un plan de negocios sencillo, generoso, divertido y además que te ayude a tu salud.
-                ¡Empieza ya!<br>
-                Solo adquiere tu membresía e invita a 7 personas directas para empezar a formar tu organización.
-            </p>
-            <div class="thumbnail">
-                <img alt=""  style="width: 40%; height: 40%;" src="<?= base_url() ?>/images/nivel1.gif"/>
-            </div>
+                Te presentamos nuestro club de consume express de productos y Servicios. </p>
             <p class="lead">
-                Por cada invitado directo que invites y compre su membresía de $100 pesos te daremos un bono de inicio y además productos a escoger de los que tenemos por ahora.<br>
-                Puede ser una canasta básica (frijol, arroz, aceite, papel, azúcar), WIKITONIC, OLGREENS, o papel higiénico de las mejores marcas.<br>
-                Puedes invitar a las personas que quieras, tú decides cuanto quieres ganar.<br>
-                Cada uno de tus invitados seguramente conoce a 7 personas que tú no conoces, este es tu primer nivel, con cuatro que hagan su consumo personal tu compra mensual te sale gratis.
+                Te invitamos a que pruebes nuestra nueva Propuesta de Matrices Forzadas Progresivas de 2x5, 3x5, 4x5, 5x5 en donde vas a poder ganar una gran cantidad de dinero.
+            </p>
+            <p class="lead">
+                Con nuestro modelo de negocios te aseguramos.
+                Ganancias muy atractivas, rapidas y constantes!!
+            </p>
+            <p class="lead">
+                No te prometemos que te vas a convertir en Millonario, Pero si obtendrás un ingreso constante cada mes y por tiempo indefinido.
+            </p>
+            <p class="lead">
+                ¿Qué te parecería? Ganar de 4 mil a 50 mil Mensuales,
+                Rápido y de manera constante por un buen tiempo?
+                Con nuestro modelo de Negocio , ¡Lo puedes lograr!
+            </p>
+            <h2>¿Por qué matrices forzadas?</h2>
+            <p class="lead">
+                Recuerda que no existe el MLM perfecto, todos tienen sus pros y sus contras. Sin embargo vemos que en las matrices forzadas es el mejor sistema para alcanzar un ingreso constante que te permita vivir cómodamente y por que no, alcanzar tu libertad financiera que tanto deseamos todos!
+            </p>
+            <p class="lead">
+                Beneficiate del derrame que comenzara a producirse dentro de nuestra matriz forzada.
+                Te pueden asignar personas dentro de tu red y vas a ganar dinero de todas ellas. Y de las personas que inviten y claro, de las que tu ¡también invites!
 
             </p>
-            <div class="thumbnail">
-                <img alt=""  style="width: 40%; height: 40%;" src="<?= base_url() ?>/images/niveles.gif"/>
-            </div>
             <p class="lead">
-                Ejemplo: 7x7= 49 ahora hay en tu grupo 49 personas, de esta manera tu grupo crecerá cada día. Recibirás $40 pesos de las personas que tengas en tu primer nivel. Más $50 pesos del segundo nivel y $60 pesos de tu tercer nivel ¡TUS INGRESOS SERAN ILIMITADOS!
-                La compra personal para obtener tu comisión es de $380 pesos al mes que pueden ser cualquiera de los productos que ofrecemos.
-                ¿Cuánto puedo ganar mensualmente? Ejemplo:
+                Vamos a contar con productos nutricionales y servicios propios y de otras compañías. Todo de excelente calidad 
             </p>
-            <div class="thumbnail">
-                <img alt="" style="width: 40%; height: 40%;" src="<?= base_url() ?>/images/niveles.gif"/>
-            </div>
+            <h3>Bono de Membresia $250 Mensuales.</h3>
+            <h4>Bono de membresía $250 Pesos Matriz 2x5. Con tan solo 62 personas</h4>
+            <p class="lead">
+                <b>1N 10 x 2 = 20</b><br>
+                <b>2N 20 x 4 = 80 = 100</b><br>
+                <b>3n 30 x 8 = 240 =340</b><br>
+                <b>4N 40 x 16 =640 = 980</b><br>
+                <b>5N 100 x 32 = 3200 =4180</b><br>
+            </p>
+            <h4>Bono de membresía Matriz 3 x 5 Con tan solo 363 personas.</h4>
+            <p class="lead">
+                <b>1N 10 x 3 =30</b><br>
+                <b>2N 20 x 9 = 180 = 210</b><br>
+                <b>3N 30 x 27 = 810 = 1020</b><br>
+                <b>4N 40 x 81 =3240 = 4260</b><br>
+                <b>5N 100 x 243 = 24300 = 28560</b><br>
+            </p>
         </div>
     </div>
 </div>

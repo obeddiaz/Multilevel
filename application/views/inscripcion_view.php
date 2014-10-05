@@ -54,17 +54,29 @@ $celular = array(
     'placeholder' => 'XXX-XXX-XXXX',
     'class' => 'form-control'
 );
-$invitado = array(
-    'name' => 'invitado',
-    'id' => 'invitado',
-    'placeholder' => 'Ejemplo: 15',
-    'class' => 'form-control'
-);
+if (isset($link_invitado)) {
+    $invitado = array(
+        'name' => 'invitado',
+        'id' => 'invitado',
+        'placeholder' => 'Ejemplo: 15',
+        'class' => 'form-control',
+        'readonly'=>'readonly',
+        'value'=>$link_invitado
+    );
+} else {
+    $invitado = array(
+        'name' => 'invitado',
+        'id' => 'invitado',
+        'placeholder' => 'Ejemplo: 15',
+        'class' => 'form-control'
+    );
+}
+
 $id_verificar = array(
     'name' => 'verificar_usuario',
     'id' => 'id_verificar',
     'value' => 'Verificar',
-    'class'=>'btn btn-primary'
+    'class' => 'btn btn-primary'
 );
 $meses = array(
     'FALSE' => 'Mes',

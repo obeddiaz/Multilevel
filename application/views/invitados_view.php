@@ -11,12 +11,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <?php foreach ($invitados as $i) { ?>
-                <td><?=$i['nombre']?></td>
-                <td><?=$i['apellido_paterno']?></td>
-                <td><?=$i['apellido_materno']?></td>
-            <?php } ?>
-        </tr>
+
+        <?php foreach ($invitados as $i) { ?>
+            <tr>
+                <td><?= $i['nombre'] ?></td>
+                <td><?= $i['apellido_paterno'] ?></td>
+                <td><?= $i['apellido_materno'] ?></td>
+            </tr>
+        <?php } ?>
+
     </tbody>
 </table>

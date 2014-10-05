@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Basicos AGS</a>
+                    <a class="navbar-brand" href="/"><strong>Club de Consumo Express</strong></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,32 +43,48 @@
                         <?php endforeach; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php
-                        if ($this->session->userdata('is_logued_in') == TRUE) {
-                            if ($this->session->userdata('perfil') == 1) {
-                                echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
-                                echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
-                                echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
+                        <li class="dropdown">
+                            <?php
+                            if ($this->session->userdata('is_logued_in') == TRUE) {
+                                if ($this->session->userdata('perfil') == 1) {
+                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
+                                    echo '<ul class="dropdown-menu" role="menu">';
+                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
+                                    echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
+                                    echo '</ul>';
+                                }
+                                if ($this->session->userdata('perfil') == 2) {
+                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
+                                    echo '<ul class="dropdown-menu" role="menu">';
+                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
+                                    echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
+                                    echo '</ul>';
+                                }
+                                if ($this->session->userdata('perfil') == 3) {
+                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
+                                    echo '<ul class="dropdown-menu" role="menu">';
+                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
+                                    echo '<li><a href="/index.php/show_usuarios"><div>Usuarios</div></a></li>';
+                                    echo '<li><a href="/index.php/productos"><div>Productos</div></a></li>';
+                                    echo '<li><a href="/index.php/ventas"><div>Ventas</div></a></li>';
+                                    //echo '<li><a href="/index.php/configuracion"><div>Configuracion</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
+                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
+                                    echo '</ul>';
+                                }
+                            } else {
+                                echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrar <span class="caret"></span></a>';
+                                echo '<ul class="dropdown-menu" role="menu">';
+                                echo '<li><a href="/index.php/login"><div>Iniciar Sesión</div></a></li>';
+                                echo "<li><a href='/index.php/inscripcion'><div>Inscripcion</div></a></li>";
+                                echo '</ul>';
                             }
-                            if ($this->session->userdata('perfil') == 2) {
-                                echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
-                                echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
-                                echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
-                            }
-                            if ($this->session->userdata('perfil') == 3) {
-                                echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                echo '<li><a href="/index.php/show_usuarios"><div>Usuarios</div></a></li>';
-                                echo '<li><a href="/index.php/productos"><div>Productos</div></a></li>';
-                                echo '<li><a href="/index.php/ventas"><div>Ventas</div></a></li>';
-                                echo '<li><a href="/index.php/configuracion"><div>Configuracion</div></a></li>';
-                            }
-                        } else {
-                            echo '<li><a href="/index.php/login"><div>Iniciar Sesión</div></a></li>';
-                            echo "<li><a href='/index.php/inscripcion'><div>Inscripcion</div></a></li>";
-                        }
-                        ?>
+                            ?>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

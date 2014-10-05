@@ -98,7 +98,7 @@ $genero = array(
     '2' => 'Mujer',
 );
 $submit = array(
-    'value' => 'Inscribirme',
+    'value' => 'Inscribir',
     'name' => 'registro',
     'id' => 'registro',
     'class' => 'btn btn-primary'

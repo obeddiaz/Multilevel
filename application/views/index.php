@@ -27,7 +27,7 @@
                     <h3 class="panel-title">¿Tiempo libre?</h3>
                 </div>
             </div>
-            <p class="lead">Basicos-ags ha creado una extraordinaria oportunidad para empresarios independientes como tú:</p>
+            <p class="lead">Club de Consumo Express ha creado una extraordinaria oportunidad para empresarios independientes como tú:</p>
             <p class="lead">Productos de extraordinaria calidad, un sistema que te permita obtener ingresos ilimitados, Ofrecemos un plan de negocio sencillo, generoso, divertido y además que te ayuda ata salud.</p>
             <p class="lead">¡Empieza ya!</p>
         </div>
@@ -38,12 +38,11 @@
                 <div class="thumbnail">
                     <img alt="" src="<?= base_url() ?>/images/empresa.gif"/>
                     <div class="caption">
-                        <h3>Basicos Ags 2013</h3>
+                        <h3>Club de Consumo Express</h3>
                         <p>Somos un grupo de empresarios con el objetivo de crear redes de consumo inteligente y en donde cada uno de los miembros participantes obtenga ganancias y beneficios por su participación</p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
