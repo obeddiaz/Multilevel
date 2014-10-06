@@ -286,4 +286,101 @@ class Verificacion extends CI_Controller {
         //echo date('Y-m-d');
     }
 
+    public function detalles_de_usuario() {
+        $id_usuario = $this->input->post('id_usuario');
+        $p = $this->usuarios_model->obtener_usuario($id_usuario);
+        $cuenta = $this->usuarios_model->get_cuenta_usuario($id_usuario);
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <?php var_dump($p); ?>
+                        <?php var_dump($cuenta); ?>
+                        <div class="container-fluid">
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $p->nombre . ' ' . $p->apellido_paterno . ' ' . $p->apellido_materno ?> " readonly="readonly" class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $p->telefono ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $p->celular ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">RFC</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $p->RFC ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">IFE</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $p->IFE ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Cuenta Bancaria</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $cuenta->cuenta ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Clave InerBancaria</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="<?= $cuenta->clave ?> " class="form-control">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
 }

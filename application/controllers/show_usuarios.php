@@ -10,12 +10,12 @@ class Show_usuarios extends CI_Controller {
         $this->load->library(array('form_validation'));
         $this->load->model('menu_model');
         $this->load->helper(array('url'));
-        $data['menu']=  $this->menu_model->conseguir_menu();
-        $data['titulo']=  'Usuarios BAGS';
-        $data['titulo_pagina']= 'Usuarios';
-        $this->load->view('header',$data);
+        $data['menu'] = $this->menu_model->conseguir_menu();
+        $data['titulo'] = 'Usuarios BAGS';
+        $data['titulo_pagina'] = 'Usuarios';
+        $this->load->view('header', $data);
         $this->load->model('inscripcion_model');
-    }  
+    }
 
     function index() {
         if ($this->session->userdata('is_logued_in') == TRUE) {
@@ -25,44 +25,59 @@ class Show_usuarios extends CI_Controller {
             $this->load->view('footer');
         }
     }
+
     function venta($user) {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $this->load->model('usuarios_model');
-            $data['token']= $this->token();
+            $data['token'] = $this->token();
             $data['user'] = $this->usuarios_model->datos_usuario($user);
-            
-        $this->load->model('productos_model');
-        
-        $data['usaurio'] = $this->usuarios_model->datos_usuario($user);
-        $data['productos'] = $this->productos_model->obtener();
-        $this->load->view('venta_view', $data);
+
+            $this->load->model('productos_model');
+
+            $data['usaurio'] = $this->usuarios_model->datos_usuario($user);
+            $data['productos'] = $this->productos_model->obtener();
+            $this->load->view('venta_view', $data);
             $this->load->view('footer');
         }
     }
-    public function token()
-    {
-        $token = md5(uniqid(rand(),true));
-        $this->session->set_userdata('token',$token);
+
+    public function token() {
+        $token = md5(uniqid(rand(), true));
+        $this->session->set_userdata('token', $token);
         return $token;
     }
-    //función encargada de actualizar los datos     
-    /*function actualizar_datos() {
-        $id = $this->input->post('id_mensaje');
-        $nombre = $this->input->post('nombre');
-        $email = $this->input->post('email');
-        $asunto = $this->input->post('asunto');
-        $mensaje = $this->input->post('mensaje');
-        $actualizar = $this->datos_model->actualizar_mensaje($id, $nombre, $email, $asunto, $mensaje);
-        //si la actualización ha sido correcta creamos una sesión flashdata para decirlo
-        if ($actualizar) {
-            $this->session->set_flashdata('actualizado', 'El mensaje se actualizó correctamente');
-            redirect('../datos', 'refresh');
+
+    function modificar() {
+        if ($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token')) {
+            $error = array('error' => $this->upload->display_errors());
+            $titulo = $this->input->post('titulo');
+            $descripcion = $this->input->post('descripcion');
+            $this->imagen_producto_model->modificar_producto_sin_imagen($this->input->post());
+            $this->index();
+        } else {
+            redirect(base_url() . 'index.php/show_usuarios');
         }
     }
 
-}*/
+    //función encargada de actualizar los datos     
+    /* function actualizar_datos() {
+      $id = $this->input->post('id_mensaje');
+      $nombre = $this->input->post('nombre');
+      $email = $this->input->post('email');
+      $asunto = $this->input->post('asunto');
+      $mensaje = $this->input->post('mensaje');
+      $actualizar = $this->datos_model->actualizar_mensaje($id, $nombre, $email, $asunto, $mensaje);
+      //si la actualización ha sido correcta creamos una sesión flashdata para decirlo
+      if ($actualizar) {
+      $this->session->set_flashdata('actualizado', 'El mensaje se actualizó correctamente');
+      redirect('../datos', 'refresh');
+      }
+      }
 
-/*application/controllers/datos.php
- * el controlador datos.php*/
+      } */
+
+    /* application/controllers/datos.php
+     * el controlador datos.php */
 }
+
 ?>
