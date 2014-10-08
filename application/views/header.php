@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title><?= $titulo ?></title>
         <link rel="icon" type="image/png" href="/images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--      <link href="<?= base_url() ?>css/estilos.css" rel="stylesheet" type="text/css" />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/funciones.js"></script>
@@ -46,44 +47,18 @@
                         <li class="dropdown">
                             <?php
                             if ($this->session->userdata('is_logued_in') == TRUE) {
-                                if ($this->session->userdata('perfil') == 1) {
-                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
-                                    echo '<ul class="dropdown-menu" role="menu">';
-                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                    echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
-                                    echo '</ul>';
-                                }
-                                if ($this->session->userdata('perfil') == 2) {
-                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
-                                    echo '<ul class="dropdown-menu" role="menu">';
-                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                    echo '<li><a href="/index.php/modificar/mostrar_datos"><div>Modificar mis datos</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
-                                    echo '</ul>';
-                                }
-                                if ($this->session->userdata('perfil') == 3) {
-                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $this->session->userdata('username') . '<span class="caret"></span></a>';
-                                    echo '<ul class="dropdown-menu" role="menu">';
-                                    echo '<li><a href="/index.php/login/logout_ci"><div>Cerrar Sesion</div></a></li>';
-                                    echo '<li><a href="/index.php/show_usuarios"><div>Usuarios</div></a></li>';
-                                    echo '<li><a href="/index.php/productos"><div>Productos</div></a></li>';
-                                    echo '<li><a href="/index.php/ventas"><div>Ventas</div></a></li>';
-                                    //echo '<li><a href="/index.php/configuracion"><div>Configuracion</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados"><div>Mis afiliados</div></a></li>';
-                                    echo '<li><a href="/index.php/afiliados/invitados"><div>Mis Invitados</div></a></li>';
-                                    echo '</ul>';
-                                }
-                            } else {
-                                echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrar <span class="caret"></span></a>';
-                                echo '<ul class="dropdown-menu" role="menu">';
-                                echo '<li><a href="/index.php/login"><div>Iniciar Sesión</div></a></li>';
-                                echo "<li><a href='/index.php/inscripcion'><div>Inscripcion</div></a></li>";
-                                echo '</ul>';
-                            }
-                            ?>
+                                ?>
+                            <li><a href="<?= base_url() ?>index.php/office/my_office"><i class="glyphicon glyphicon-file"></i> Mi Oficina</a></li>
+                            <li><a href="/index.php/login/logout_ci"><i class="glyphicon glyphicon-log-out"></i> Cerrar Sesion</div></a></li>
+                            <?php
+                        } else {
+                            echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrar <span class="caret"></span></a>';
+                            echo '<ul class="dropdown-menu" role="menu">';
+                            echo '<li><a href="/index.php/login"><div>Iniciar Sesión</div></a></li>';
+                            echo "<li><a href='/index.php/inscripcion'><div>Inscripcion</div></a></li>";
+                            echo '</ul>';
+                        }
+                        ?>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->

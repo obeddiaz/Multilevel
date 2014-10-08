@@ -62,7 +62,7 @@ class Afiliados_model extends CI_Model {
     }
 
     public function get_invitados($user) {
-        $this->db->select('u.nombre, u.apellido_paterno,u.apellido_materno');
+        $this->db->select('u.id_usuario, u.nombre, u.apellido_paterno,u.apellido_materno');
         $this->db->from('usuarios u ');
         $this->db->join('invitados_directos id', 'id.id_usuario_inv=u.id_usuario');
         $this->db->where('id.id_usuario',$user);

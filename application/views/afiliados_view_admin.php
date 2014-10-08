@@ -2,9 +2,9 @@
     <table id="tableEdo" ng-table="tableParams" class="table table-condensed table-hover">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Apellido paterno</th>
-                <th>Apellido Materno</th>
+                <th style="width: 33%;">Nombre</th>
+                <th style="width: 33%;">Apellido paterno</th>
+                <th style="width: 33%;">Apellido Materno</th>
             </tr>
         </thead>
         <tbody>

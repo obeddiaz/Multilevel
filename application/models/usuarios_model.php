@@ -57,27 +57,32 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
-    function modificar_usuario($data) {
-        $this->db->where('id_usuario', $data['id_usuario']);
-        unset($data['token']);
+    function modificar_usuario($data, $id) {
+        $this->db->where('id_usuario', $id);
         return $this->db->update('usuarios', $data);
     }
 
     function get_cuenta_usuario($user) {
         $this->db->where('id_usuario', $user);
-        $query = $this->db->get('datos_cuenta');
+        $this->db->from('datos_cuenta');
+        $query = $this->db->get();
         if ($query->num_rows() == 0) {
-            $query->cuenta = '';
-            $query->clave = '';
-            return $query->result_array();
+            return $query->row();
         }
         return $query->row();
     }
 
-    function modificar_cuenta_usuario($data) {
-        $this->db->where('id_usuario', $data['id_usuario']);
-        unset($data['token']);
-        return $this->db->update('usuarios', $data);
+    function modificar_cuenta_usuario($data, $id) {
+        $this->db->where('id_usuario', $id);
+        $this->db->from('datos_cuenta');
+        $query = $this->db->get();
+        if ($query->num_rows() == 0) {
+            $data['id_usuario']=$id;
+            return $this->db->insert('datos_cuenta', $data);
+        } else {
+            $this->db->where('id_usuario', $id);
+            return $this->db->update('datos_cuenta', $data);
+        }
     }
 
 }

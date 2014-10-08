@@ -68,7 +68,7 @@ class Inscripcion_model extends CI_Model {
         unset($data['day']);
         unset($data['month']);
         unset($data['year']);
-        $this->db->like('id_usuario', $id_persona['id_usuario']);
+        $this->db->where('id_usuario', $id_persona['id_usuario']);
         $this->db->from('usuario_afiliado');
         $count = $this->db->count_all_results();
         $this->db->insert('usuarios', $data);
@@ -126,7 +126,7 @@ class Inscripcion_model extends CI_Model {
     }
 
     public function check_has_three_users($user) {
-        $this->db->like('id_usuario', $user);
+        $this->db->where('id_usuario', $user);
         $this->db->from('usuario_afiliado');
         $count = $this->db->count_all_results();
         if ($count < 3) {

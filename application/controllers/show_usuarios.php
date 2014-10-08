@@ -49,10 +49,9 @@ class Show_usuarios extends CI_Controller {
 
     function modificar() {
         if ($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token')) {
-            $error = array('error' => $this->upload->display_errors());
-            $titulo = $this->input->post('titulo');
-            $descripcion = $this->input->post('descripcion');
-            $this->imagen_producto_model->modificar_producto_sin_imagen($this->input->post());
+            $this->load->model('usuarios_model');
+            $this->usuarios_model->modificar_usuario($this->input->post('usuarios'),$this->input->post('userid'));
+            $this->usuarios_model->modificar_cuenta_usuario($this->input->post('datos_cuenta'),$this->input->post('userid'));
             $this->index();
         } else {
             redirect(base_url() . 'index.php/show_usuarios');

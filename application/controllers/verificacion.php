@@ -175,18 +175,6 @@ class Verificacion extends CI_Controller {
         </div>
         <?= form_close() ?>
         <?php
-//        echo "<table border='0'><tr><td>" . '<img alt="" src="' . base_url() . "productos_imagenes/thumbs/" . $producto->ruta_imagen . '"/></td><td>';
-//        echo form_open_multipart('productos/modificar');
-//        echo "<label>Nombre del Producto:</label>" . form_input($nombre);
-//        echo "<label>Descripcion/Contenido:</label>" . form_textarea($descripcion);
-//        echo "<label>Precio:</label>" . form_input($precio);
-//        echo form_upload($imagen);
-//        echo form_hidden('id_producto', $id);
-//        echo form_hidden('imagen_pasada', $imagen_pasada);
-//        echo form_hidden('token', $token);
-//        echo form_submit($submit);
-//        echo form_close();
-//        echo "</td></tr></table>";
     }
 
     public function usuario() {
@@ -290,90 +278,181 @@ class Verificacion extends CI_Controller {
         $id_usuario = $this->input->post('id_usuario');
         $p = $this->usuarios_model->obtener_usuario($id_usuario);
         $cuenta = $this->usuarios_model->get_cuenta_usuario($id_usuario);
+        $submit = array(
+            'value' => 'Modificar Usuario',
+            'class' => 'btn btn-primary'
+        );
+        $token = $this->token();
         ?>
+
         <div class="modal-dialog">
+            <div class="modal-content">
+                <?= form_open_multipart('office/my_office/modificar', 'class="form-horizontal"') ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?= $p->nombre . ' ' . $p->apellido_paterno . ' ' . $p->apellido_materno ?> " disabled="disabled" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?= $p->email ?> " disabled="disabled" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="usuarios[telefono]" value="<?= $p->telefono ?>" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
+                                    <div class="col-sm-10">
+                                        <input name="usuarios[celular]" type="text" value="<?= $p->celular ?>" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">RFC</label>
+                                    <div class="col-sm-10">
+                                        <input name="usuarios[RFC]" type="text" value="<?= $p->RFC ?>" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">IFE</label>
+                                    <div class="col-sm-10">
+                                        <input name="usuarios[IFE]" type="text" value="<?= $p->IFE ?>" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Cuenta Bancaria</label>
+                                    <div class="col-sm-10">
+                                        <?php if ($cuenta) { ?>
+                                            <input name="datos_cuenta[cuenta]" type="text" value="<?= $cuenta->cuenta ?>" class="form-control">
+                                        <?php } else { ?>
+                                            <input name="datos_cuenta[cuenta]" type="text" value="" class="form-control">
+                                        <?php } ?>                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Clave InerBancaria</label>
+                                    <div class="col-sm-10">
+                                        <?php if ($cuenta) { ?>
+                                            <input name="datos_cuenta[clave]" type="text" value="<?= $cuenta->clave ?>" class="form-control"> 
+                                        <?php } else { ?>
+                                            <input name="datos_cuenta[clave]" type="text" value="" class="form-control"> 
+                                        <?php } ?>   
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <?= form_hidden('userid', $id_usuario) ?>
+                    <?= form_hidden('token', $token) ?>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    <?= form_submit($submit) ?>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+
+        <?php
+    }
+
+    public function detalles_de_invitado() {
+        $id_usuario = $this->input->post('id_usuario');
+        $p = $this->usuarios_model->obtener_usuario($id_usuario);
+        ?>
+        <div class="modal-dialog form-horizontal">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">Usuario</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
-                        <?php var_dump($p); ?>
-                        <?php var_dump($cuenta); ?>
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $p->nombre . ' ' . $p->apellido_paterno . ' ' . $p->apellido_materno ?> " readonly="readonly" class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $p->telefono ?> " class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $p->celular ?> " class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">RFC</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $p->RFC ?> " class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">IFE</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $p->IFE ?> " class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Cuenta Bancaria</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $cuenta->cuenta ?> " class="form-control">                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Clave InerBancaria</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" value="<?= $cuenta->clave ?> " class="form-control">                                    
-                                        </div>
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?= $p->nombre . ' ' . $p->apellido_paterno . ' ' . $p->apellido_materno ?> " disabled="disabled" class="form-control">                                    
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?= $p->email ?> " disabled="disabled" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="usuarios[telefono]" value="<?= $p->telefono ?>"  disabled="disabled" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
+                                    <div class="col-sm-10">
+                                        <input name="usuarios[celular]" type="text" value="<?= $p->celular ?>"  disabled="disabled" class="form-control">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>

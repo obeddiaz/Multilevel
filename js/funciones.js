@@ -248,3 +248,22 @@ function detalles_usuario(id_usuario) {
     });
     return false;
 }
+
+function detalles_invitado(id_usuario) {
+    $.ajax({
+        type: "POST",
+        url: "http://" + GetBaseUrl() + "/index.php/verificacion/detalles_de_invitado",
+        data: "id_usuario=" + id_usuario,
+        dataType: "html",
+        beforeSend: function () {
+            $('#msgInvitado').html('Verificando...');
+        },
+        success: function (data) {
+            $('#myModal').html(data);
+            $('#myModal').modal();
+        }
+
+    });
+    return false;
+}
+
