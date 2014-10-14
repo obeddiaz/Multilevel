@@ -52,11 +52,8 @@
                             <li><a href="/index.php/login/logout_ci"><i class="glyphicon glyphicon-log-out"></i> Cerrar Sesion</div></a></li>
                             <?php
                         } else {
-                            echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrar <span class="caret"></span></a>';
-                            echo '<ul class="dropdown-menu" role="menu">';
                             echo '<li><a href="/index.php/login"><div>Iniciar Sesión</div></a></li>';
                             echo "<li><a href='/index.php/inscripcion'><div>Inscripcion</div></a></li>";
-                            echo '</ul>';
                         }
                         ?>
                         </li>
