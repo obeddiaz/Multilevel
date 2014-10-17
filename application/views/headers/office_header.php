@@ -7,6 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- Bootstrap Core CSS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <link href="<?= base_url() ?>css/bootstrap.min.css" rel="stylesheet">
         <!-- MetisMenu CSS -->
         <link href="<?= base_url() ?>css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -40,12 +41,22 @@
                     </button>
                     <a class="navbar-brand" href="/">Club de consume Express</a>
                 </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                    </li>
+                    <li>
+                        <a href="/index.php/office/my_office/mis_datos">
+                            <i class="fa fa-user fa-fw"></i> <?= $usuario ?>
+                        </a>
+                    </li>
+                </ul>
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse collapse">
                         <ul class="nav" id="side-menu">
                             <?php if ($this->session->userdata('is_logued_in') == TRUE) { ?>
                                 <?php if ($this->session->userdata('perfil') == 1) { ?>
                                     <li><a href="/index.php/office/my_office"><i class="fa fa-sitemap fa-fw"></i> Mis afiliados</a></li>
+                                    <li><a href="/index.php/office/my_office/arbol_afiliados"><i class="fa fa-sitemap fa-fw"></i> Arbol de afiliados</a></li>
                                     <li><a href="/index.php/office/my_office/modificar_datos"><i class="fa fa-wrench fa-fw"></i> Modificar mis datos</a></li>
                                     <li><a href="/index.php/office/my_office/invitados"><i class="fa fa-user fa-fw"></i> Mis Invitados</a></li>
                                     <li><a href="/index.php/office/my_office/contabilidad"><i class="glyphicon glyphicon-usd"></i> Contabilidad</a></li> 
@@ -53,6 +64,7 @@
                                 <?php } ?>
                                 <?php if ($this->session->userdata('perfil') == 2) { ?>
                                     <li><a href="/index.php/office/my_office"><i class="fa fa-sitemap fa-fw"></i> Mis afiliados</a></li>
+                                    <li><a href="/index.php/office/my_office/arbol_afiliados"><i class="fa fa-sitemap fa-fw"></i> Arbol de afiliados</a></li>
                                     <li><a href="/index.php/office/my_office/modificar_datos"><i class="fa fa-wrench fa-fw"></i> Modificar mis datos</a></li>
                                     <li><a href="/index.php/office/my_office/invitados"><i class="fa fa-user fa-fw"></i> Mis Invitados</a></li>
                                     <li><a href="/index.php/office/my_office/contabilidad"><i class="glyphicon glyphicon-usd"></i> Contabilidad</a></li>
@@ -60,6 +72,7 @@
                                 <?php } ?>
                                 <?php if ($this->session->userdata('perfil') == 3) { ?>
                                     <li><a href="/index.php/office/my_office"><i class="fa fa-user fa-fw"></i> Mis afiliados</a></li>
+                                    <li><a href="/index.php/office/my_office/arbol_afiliados"><i class="fa fa-sitemap fa-fw"></i> Arbol de afiliados</a></li>
                                     <li><a href="/index.php/office/my_office/usuarios"><i class="fa fa-user fa-fw"></i> Usuarios</a></li>
                                     <li><a href="/index.php/office/my_office/productos"><i class="fa fa-suitcase fa-fw"></i> Productos</a></li>
                                     <li><a href="/index.php/office/my_office/ventas"><i class="fa fa-money fa-fw"></i> Ventas</a></li>  

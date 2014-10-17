@@ -30,13 +30,13 @@ class Login extends CI_Controller {
                 $this->load->view('footer');
                 break;
             case '1':
-                redirect(base_url() . 'index.php/principal');
+                redirect(base_url() . 'index.php/office/my_office/mis_datos');
                 break;
             case '2':
-                redirect(base_url() . 'index.php/principal');
+                redirect(base_url() . 'index.php/office/my_office/mis_datos');
                 break;
             case '3':
-                redirect(base_url() . 'index.php/principal');
+                redirect(base_url() . 'index.php/office/my_office/mis_datos');
                 break;
             default:
                 $this->load->view('index.php/login_view', $data);

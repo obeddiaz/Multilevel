@@ -85,4 +85,14 @@ class Usuarios_model extends CI_Model {
         }
     }
 
+    function get_patrocinador($id) {
+        $this->db->select('u.id_usuario,u.nombre,u.apellido_paterno,u.apellido_materno', $id);
+        $this->db->where('ua.id_usuario_inv', $id);
+        $this->db->from('usuarios u');
+        $this->db->join('usuario_afiliado ua','ua.id_usuario=u.id_usuario');
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+
 }

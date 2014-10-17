@@ -45,13 +45,14 @@ class Afiliados_model extends CI_Model {
             foreach ($query->result() as $q) {
                 if ($c == 0) {
                     $c = 1;
-                    $this->db->where('id_usuario', $q->id_usuario_inv);
+                    $this->db->where('u.id_usuario', $q->id_usuario_inv);
                 } else {
-                    $this->db->or_where('id_usuario', $q->id_usuario_inv);
+                    $this->db->or_where('u.id_usuario', $q->id_usuario_inv);
                 }
             }
-            $this->db->select('nombre,apellido_paterno,apellido_materno');
-            $this->db->from('usuarios');
+            $this->db->select('u.id_usuario,ua.id_usuario as patrocinador,u.nombre,u.apellido_paterno,u.apellido_materno');
+            $this->db->from('usuarios u');
+            $this->db->join('usuario_afiliado ua','ua.id_usuario_inv=u.id_usuario');
             $query = $this->db->get();
         } else {
             $query->nombre = '';

@@ -2,6 +2,9 @@
     <div class="row-fluid">
         <div class="col-md-12">
             <p class="lead">
+                <a target="_blank" href="http://docs.google.com/viewer?url=http%3A%2F%2Fwww.clubdeconsumoexpress.com%2Fpresentacion%2FCLUBDECONSUMOEXPRESS.pdf">Ver Presentacion Completa</a>
+            </p>
+            <p class="lead">
                 Hoy tienes la oportunidad de lograr lo que muchas personas desean en la vida, esto es gozar excelente salud y ganar dinero.
                 Te invitamos a mejorar el bienestar de tu familia, para suplir las deficiencias de la dieta diaria.<br>
                 En nuestros productos usamos la más alta tecnología disponible en el medio en beneficio de todos ustedes, pues sabemos que a través de la calidad total es cómo podemos satisfacer sus necesidades y cumplir con sus expectativas.<br>

@@ -41,14 +41,18 @@
                             <table id="tableEdo" ng-table="tableParams" class="table table-condensed table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width: 33%;">Nombre</th>
-                                        <th style="width: 33%;">Apellido paterno</th>
-                                        <th style="width: 33%;">Apellido Materno</th>
+                                        <th style="width: 4%;">#</th>
+                                        <th style="width: 4%;">Patrocinador</th>
+                                        <th style="width: 32%;">Nombre</th>
+                                        <th style="width: 32%;">Apellido paterno</th>
+                                        <th style="width: 32%;">Apellido Materno</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach (${"afiliados$a"} as $afi): ?>
                                         <tr>
+                                            <td><?= $afi['id_usuario'] ?></td>
+                                            <td><?= $afi['patrocinador'] ?></td>
                                             <td><?php echo $afi["nombre"]; ?></td>
                                             <td><?php echo $afi["apellido_paterno"]; ?></td>
                                             <td><?php echo $afi["apellido_materno"] ?></td>

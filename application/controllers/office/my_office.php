@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class My_office extends CI_Controller {
 
+    public $usuario;
+
     function __construct() {
         parent::__construct();
         $this->load->database('default');
@@ -13,6 +15,7 @@ class My_office extends CI_Controller {
         $this->load->library(array('form_validation'));
         $this->load->model('menu_model');
         $this->load->helper(array('url'));
+        $this->usuario = $this->session->userdata('username');
     }
 
     function index() {
@@ -23,11 +26,12 @@ class My_office extends CI_Controller {
             //$this->load->view('header', $data);
             $this->load->model('afiliados_model');
             $data['compartir'] = $this->session->userdata('id_usuario');
-            $data['niveles'] = 5;
+            $data['niveles'] = 4;
             for ($a = 1; $a <= $data['niveles']; $a++) {
                 $data['afiliados' . $a] = $this->afiliados_model->mostrar_afiliados_nivel_1($this->session->userdata('id_usuario'), $a);
             }
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/afiliados', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -39,7 +43,8 @@ class My_office extends CI_Controller {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $this->load->model('usuarios_model');
             $data['usuarios'] = $this->usuarios_model->obtener();
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/usuarios_view', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -69,7 +74,8 @@ class My_office extends CI_Controller {
             $this->load->model('imagen_producto_model');
             $data['productos'] = $this->imagen_producto_model->conseguir();
             $data['token'] = $this->token();
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/productos', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -83,7 +89,8 @@ class My_office extends CI_Controller {
             $year = 2013;
             $month = 12;
             $data['ventas'] = $this->ventas_model->ventas_mes($year, $month);
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/ventas', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -95,7 +102,8 @@ class My_office extends CI_Controller {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $this->load->model('usuarios_model');
             $data['usuarios'] = $this->usuarios_model->obtener();
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/main', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -111,7 +119,8 @@ class My_office extends CI_Controller {
             //$this->load->view('header', $data);
             $this->load->model('afiliados_model');
             $data['invitados'] = $this->afiliados_model->get_invitados($this->session->userdata('id_usuario'));
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/invitados', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -123,7 +132,8 @@ class My_office extends CI_Controller {
         if ($this->session->userdata('is_logued_in') == TRUE) {
             $data['token'] = $this->token();
             $data['edicion'] = $this->modificar_model->obtener($this->session->userdata('id_usuario'));
-            $this->load->view('headers/office_header');
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
             $this->load->view('office/modificar_datos', $data);
             $this->load->view('footers/office_footer');
         } else {
@@ -144,9 +154,43 @@ class My_office extends CI_Controller {
     }
 
     function contabilidad() {
-        $this->load->view('headers/office_header');
+        $userdata['usuario'] = $this->usuario;
+        $this->load->view('headers/office_header', $userdata);
         $this->load->view('office/contabilidad');
         $this->load->view('footers/office_footer');
+    }
+
+    function mis_datos() {
+        $this->load->model('usuarios_model');
+        $data['usuario'] = $this->usuarios_model->obtener_usuario($this->session->userdata('id_usuario'));
+        $data['patrocinador'] = $this->usuarios_model->get_patrocinador($this->session->userdata('id_usuario'));
+        $userdata['usuario'] = $this->usuario;
+        $this->load->view('headers/office_header', $userdata);
+        $this->load->view('office/mis_datos',$data);
+        $this->load->view('footers/office_footer');
+    }
+
+    function arbol_afiliados() {
+        if ($this->session->userdata('is_logued_in') == TRUE) {
+            $this->load->model('usuarios_model');
+            $data['menu'] = $this->menu_model->conseguir_menu();
+            $data['titulo'] = 'Afiliados BAGS';
+            $data['titulo_pagina'] = 'Afiliados de ' . $this->session->userdata('username') . ' Id: ' . $this->session->userdata('id_usuario');
+            //$this->load->view('header', $data);
+            $this->load->model('afiliados_model');
+            $data['compartir'] = $this->session->userdata('id_usuario');
+            $data['niveles'] = 4;
+            $data['patrocinador'] = $this->usuarios_model->get_patrocinador($this->session->userdata('id_usuario'));
+            for ($a = 1; $a <= $data['niveles']; $a++) {
+                $data['afiliados' . $a] = $this->afiliados_model->mostrar_afiliados_nivel_1($this->session->userdata('id_usuario'), $a);
+            }
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
+        $this->load->view('office/arbol_afiliados',$data);
+        $this->load->view('footers/office_footer');
+        } else {
+            redirect(base_url() . 'index.php');
+        }
     }
 
 }

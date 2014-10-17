@@ -1,24 +1,22 @@
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <ul class="lead">
                 <li>Correo</li>
-                <li>basicosags@gmail.com</li>
-                <li>Direccion</li>
                 <ul>
-                    <li>Claveles #119 colonia Las flores, Planta Alta</li>
+                     <li>basicosags@gmail.com</li>
                 </ul>
-                <li>Telefonos</li>
-                <ul>  
-                    <li>9-15-21-67</li>
-                    <li>269-36-81</li>
+               
+                <li>Datos del dueño </li>
+                <ul>
+                    <li>Nombre: Rafael Montoya de Anda</li>
+                    <li>RFC: MOAR591025-TY8</li>
+                    <li>Banco: SCOTIABANK</li>
+                    <li>Cta: 01504663438</li>
+                    <li>Clave: 044010015046634387</li>
+                    <li>Tarjeta para deposito en OXXO 5579209068469979</li>
                 </ul>
             </ul>   
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="col-md-6">
-            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.mx/maps?f=d&amp;source=s_d&amp;saddr=21.873656,-102.304979&amp;daddr=&amp;hl=es-419&amp;geocode=&amp;sll=21.873049,-102.303196&amp;sspn=0.005645,0.010568&amp;mra=mift&amp;mrsp=0&amp;sz=17&amp;ie=UTF8&amp;t=m&amp;ll=21.873049,-102.303196&amp;spn=0.005645,0.010568&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.mx/maps?f=d&amp;source=embed&amp;saddr=21.873656,-102.304979&amp;daddr=&amp;hl=es-419&amp;geocode=&amp;sll=21.873049,-102.303196&amp;sspn=0.005645,0.010568&amp;mra=mift&amp;mrsp=0&amp;sz=17&amp;ie=UTF8&amp;t=m&amp;ll=21.873049,-102.303196&amp;spn=0.005645,0.010568" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
         </div>
     </div>
 </div>
