@@ -77,7 +77,7 @@ class Usuarios_model extends CI_Model {
         $this->db->from('datos_cuenta');
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
-            $data['id_usuario']=$id;
+            $data['id_usuario'] = $id;
             return $this->db->insert('datos_cuenta', $data);
         } else {
             $this->db->where('id_usuario', $id);
@@ -89,10 +89,38 @@ class Usuarios_model extends CI_Model {
         $this->db->select('u.id_usuario,u.nombre,u.apellido_paterno,u.apellido_materno', $id);
         $this->db->where('ua.id_usuario_inv', $id);
         $this->db->from('usuarios u');
-        $this->db->join('usuario_afiliado ua','ua.id_usuario=u.id_usuario');
+        $this->db->join('usuario_afiliado ua', 'ua.id_usuario=u.id_usuario');
         $query = $this->db->get();
         return $query->row();
     }
 
+    public function change_password($user_data) {
+        $user_data['pass_anterior'] = sha1($user_data['pass_anterior']);
+        $user_data['password'] = sha1($user_data['password']);
+        $this->db->where('id_usuario', $user_data['id_usuario']);
+        $this->db->where('password', $user_data['pass_anterior']);
+        $query = $this->db->get('usuarios');
+        unset($user_data['pass_anterior']);
+        unset($user_data['password_conf']);
+        if ($query->num_rows() == 1) {
+            $this->db->where('id_usuario', $user_data['id_usuario']);
+            $this->session->set_flashdata('contraseña_cambiada', 'La Contraseña a sido Cambiada correctamente');
+            return $this->db->update('usuarios', $user_data);
+        } else {
+            $this->session->set_flashdata('usuario_incorrecto', 'Los datos introducidos son incorrectos');
+            redirect(base_url() . 'index.php/login', 'refresh');
+        }
+    }
+
+    public function verify_password($userid, $password) {
+        $this->db->where('id_usuario', $userid);
+        $this->db->where('password', $password);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
 }

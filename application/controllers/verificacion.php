@@ -462,4 +462,84 @@ class Verificacion extends CI_Controller {
         <?php
     }
 
+    public function cambiar_password() {
+        $id_usuario = $this->input->post('id_usuario');
+        $p = $this->usuarios_model->obtener_usuario($id_usuario);
+        $past_password = array(
+            'name' => 'change_data[pass_anterior]',
+            'id' => 'password',
+            'placeholder' => 'Contraseña Anterior',
+            'class' => 'form-control'
+        );
+        $password = array(
+            'name' => 'change_data[password]',
+            'id' => 'password',
+            'placeholder' => 'Nueva Contraseña',
+            'class' => 'form-control'
+        );
+        $password_conf = array(
+            'name' => 'change_data[password_conf]',
+            'id' => 'password_conf',
+            'placeholder' => 'Confirmar contraseña',
+            'class' => 'form-control'
+        );
+        $submit = array(
+            'value' => 'cambiar Contraseña',
+            'class' => 'btn btn-primary'
+        );
+        $token = $this->token();
+        ?>
+        <div class="modal-dialog form-horizontal">
+            <div class="modal-content">
+                <?= form_open_multipart('db_updates/change_password', 'class="form-horizontal"') ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><?= $p->nombre . ' ' . $p->apellido_paterno . ' ' . $p->apellido_materno ?> </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Contraseña Anterior</label>
+                                    <div class="col-sm-10">
+                                        <?= form_password($past_password) ?>                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nueva Contraseña</label>
+                                    <div class="col-sm-10">
+                                        <?= form_password($password) ?>                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Confirmar Contraseña</label>
+                                    <div class="col-sm-10">
+                                        <?= form_password($password_conf) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <?= form_hidden('change_data[id_usuario]', $id_usuario) ?>
+                    <?= form_hidden('token', $token) ?>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    <?= form_submit($submit) ?>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+        <?php
+    }
+
 }

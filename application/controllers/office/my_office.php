@@ -161,13 +161,17 @@ class My_office extends CI_Controller {
     }
 
     function mis_datos() {
-        $this->load->model('usuarios_model');
-        $data['usuario'] = $this->usuarios_model->obtener_usuario($this->session->userdata('id_usuario'));
-        $data['patrocinador'] = $this->usuarios_model->get_patrocinador($this->session->userdata('id_usuario'));
-        $userdata['usuario'] = $this->usuario;
-        $this->load->view('headers/office_header', $userdata);
-        $this->load->view('office/mis_datos',$data);
-        $this->load->view('footers/office_footer');
+        if ($this->session->userdata('is_logued_in') == TRUE) {
+            $this->load->model('usuarios_model');
+            $data['usuario'] = $this->usuarios_model->obtener_usuario($this->session->userdata('id_usuario'));
+            $data['patrocinador'] = $this->usuarios_model->get_patrocinador($this->session->userdata('id_usuario'));
+            $userdata['usuario'] = $this->usuario;
+            $this->load->view('headers/office_header', $userdata);
+            $this->load->view('office/mis_datos', $data);
+            $this->load->view('footers/office_footer');
+        } else {
+            redirect(base_url() . 'index.php');
+        }
     }
 
     function arbol_afiliados() {
@@ -186,8 +190,8 @@ class My_office extends CI_Controller {
             }
             $userdata['usuario'] = $this->usuario;
             $this->load->view('headers/office_header', $userdata);
-        $this->load->view('office/arbol_afiliados',$data);
-        $this->load->view('footers/office_footer');
+            $this->load->view('office/arbol_afiliados', $data);
+            $this->load->view('footers/office_footer');
         } else {
             redirect(base_url() . 'index.php');
         }

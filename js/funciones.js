@@ -267,3 +267,19 @@ function detalles_invitado(id_usuario) {
     return false;
 }
 
+function cambio_password(id_usuario) {
+    $.ajax({
+        type: "POST",
+        url: "http://" + GetBaseUrl() + "/index.php/verificacion/cambiar_password",
+        data: "id_usuario=" + id_usuario,
+        dataType: "html",
+        success: function (data) {
+            $('#myModal').html(data);
+            $('#myModal').modal();
+        }
+
+    });
+    return false;
+}
+
+
